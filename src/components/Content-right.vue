@@ -5,27 +5,20 @@
             <i class="fa fa-heartbeat yellow" ></i>
             <i class="fa fa-heartbeat green" ></i>
             <hr>
-            <div class="signature">愿你出走半生，归来仍是少年</div>
-            <div class="signature">希望你过得好，像照片上一样好</div>
+            <div class="signature"  v-for="signature of signatures">{{signature.signature}}</div>
         </h3>
         <h3>
             <blockquote>技能</blockquote>
             <hr>
             <div class="skill">
-                <a :style="{ fontSize:Math.floor(Math.random()*10 + 11) + 'px'}" href="javascript:void(0);">PHP</a>
-                <a :style="{ fontSize:Math.floor(Math.random()*10 + 11) + 'px'}" href="javascript:void(0);">VueJs</a>
-                <a :style="{ fontSize:Math.floor(Math.random()*10 + 11) + 'px'}" href="javascript:void(0);">JavaScript</a>
+                <a :style="{ fontSize:Math.floor(Math.random()*10 + 11) + 'px'}" href="javascript:void(0);" v-for="skill of skills">{{skill.skill}}</a>
             </div>
         </h3>
         <h3>
             <blockquote>Fork Me</blockquote>
             <hr>
             <div class="fork">
-               <a href=""><i class="fa fa-github fa-2x"></i></a>
-               <a href=""><i class="fa fa-weibo fa-2x" style="color:#E6162D;"></i></a>
-               <a href=""><i class="fa fa-facebook-official fa-2x" style="color:#3B5998;"></i></a>
-               <a href=""><i class="fa fa-google-plus-official fa-2x" style="color: #DB4437;"></i></a>
-               <a href=""><i class="fa fa-twitter fa-2x" style="color:#3B94D9;"></i></a>
+               <a v-for="fork of forks" :href="fork.link" :style="{color:fork.color}" target="_bank"><i :class="fork.class"></i></a>
             </div>
         </h3>
     </div>
@@ -35,7 +28,27 @@
 export default {
   data () {
     return {
-      msg: 'contents'
+      signatures: [
+      {'signature': '愿你出走半生，归来仍是少年'},
+      {'signature': '生命是什么呢？生命是不知道如何是好'},
+      {'signature': '希望你过得好，像照片里一样好'},
+      {'signature': '对自己好的人不多，遇见合适的人很难'},
+      {'signature': '让年华倾其所有，画一个我和你'}
+      ],
+      skills: [
+      {'skill': 'PHP'},
+      {'skill': 'JavaScript'},
+      {'skill': 'MySql'},
+      {'skill': 'Vue.Js'},
+      {'skill': 'Node.Js'}
+      ],
+      forks: [
+      {'class': 'fa fa-github fa-2x', 'color': 'black', 'link': 'https://github.com/linganmin'},
+      {'class': 'fa fa-weibo fa-2x', 'color': '#E6162D', 'link': 'http://weibo.com/534558936'},
+      {'class': 'fa fa-facebook-official fa-2x', 'color': '#3B5998', 'link': 'https://www.facebook.com/saboran2015'},
+      {'class': 'fa fa-google-plus-official fa-2x', 'color': '#DB4437', 'link': 'https://plus.google.com/103689447878397907839'},
+      {'class': 'fa fa-twitter fa-2x', 'color': '#3B94D9', 'link': 'https://twitter.com/SaboranMin'}
+      ]
     }
   }
 }
@@ -74,11 +87,13 @@ export default {
 .skill a {
     color: #41B883;
     text-decoration: none;
+    margin-left: 5px;
 }
 .skill a:hover {
     color: white;
     background-color: #41B883;
 }
+
 .fork a {
     color: black;
     margin-left: 15px;
